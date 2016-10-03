@@ -20,6 +20,7 @@ var usersController = (function() {
 
                     data.users.login(user)
                         .then(function() {
+                            console.log("user logged in");
                             toastr.success(`User "${user.username}" logged in!`);
                             context.redirect("#/");
                         });
@@ -64,7 +65,9 @@ var usersController = (function() {
                         .then(function() {
                             console.log("user registered");
                             toastr.success(`User "${user.username}" successfully registered!`);
-                        });
+                            context.redirect("#/");
+                        })
+                        .then(data.users.login(user));
                 });
 
                 // If you need both butttons register and login
