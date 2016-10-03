@@ -1,0 +1,29 @@
+{
+  "name": "Forture-Cookies-Sep-2015",
+  "version": "0.0.0",
+  "authors": [
+    "Yovko Gospodinov"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sammy": "^0.7.6",
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "handlebars": "^4.0.5",
+    "toastr": "^2.1.3",
+    "jquery-ui": "^1.12.1",
+    "lodash": "^4.16.2",
+    "crypto-js": "^3.1.6"
+  },
+  "resolutions": {
+    "jquery": ">=1.6.3 <3"
+  }
+}
