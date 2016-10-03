@@ -18,9 +18,9 @@
                 <h1 class="page-header col-md-9">Cookies Manager</h1>
                 <div class="col-md-3">
                     <ul style="list-style-type:none">
-                        <li><a href="#/register">Register</a></li>
-                        <li><a href="#/login">Login</a></li>
-                        <li><a href="#/home">Logout</a></li>
+                        <li id="btn-nav-register"><a href="#/register">Register</a></li>
+                        <li id="btn-nav-login"><a href="#/login">Login</a></li>
+                        <!--<li id="hidden"><a href="#/home">Logout</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -29,6 +29,13 @@
                     <li><a href="#/home">Home</a></li>
                     <!--<li><a href="#/todos">My TODOs</a></li>
                     <li><a href="#/events">My Events</a></li>-->
+
+                    <li class="hidden">
+                        <a id="user-logout" href="#/logout">Logout</a>
+                    </li>
+                    <li class="hidden">
+                        <a id="username-value"></a>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -54,10 +61,10 @@
     <script src="js/controllers/eventsController.js"></script>-->
 
     <!--App setup-->
-
+    <script src="js/data.js"></script>
     <script src="js/app.js"></script>
     <script src="js/templates.js"></script>
-    <script src="js/data.js"></script>
+    
 </body>
 
 </html>

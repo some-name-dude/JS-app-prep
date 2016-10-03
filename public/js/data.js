@@ -35,10 +35,29 @@ var data = function() {
         return promise;
     }
 
+    function isLoggedIn() {
+        return !!localStorage.getItem("username");
+    }
+
+    function getCurrentUser() {
+        return localStorage.getItem("username");
+    }
+
+    function logout() {
+        return Promise.resolve()
+            .then(() => {
+                localStorage.removeItem("username");
+                localStorage.removeItem("authKey");
+            });
+    }
+
     return {
         users: {
             login: login,
-            register: register
+            register: register,
+            logout: logout,
+            isLoggedIn: isLoggedIn,
+            getCurrentUser: getCurrentUser
         }
     };
 }();
