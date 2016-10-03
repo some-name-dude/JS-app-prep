@@ -56,6 +56,18 @@ var data = function() {
             });
     }
 
+    /* Cookies */
+
+    function getCookies() {
+        var promise = new Promise(function(resolve, reject) {
+            var url = "api/cookies";
+            $.getJSON(url)
+                .done(resolve)
+                .fail(reject);
+        });
+        return promise;
+    }
+
     return {
         users: {
             login: login,
@@ -63,6 +75,9 @@ var data = function() {
             logout: logout,
             isLoggedIn: isLoggedIn,
             getCurrentUser: getCurrentUser
+        },
+        cookies: {
+            get: getCookies
         }
     };
 }();

@@ -1,1 +1,8 @@
 <h1>Fortune Cookies</h1>
+
+{{#each this}}
+<h3><strong>Category: {{category}}</strong></h3>
+<p><strong>Text: {{text}}</strong></p>
+<img src="{{img}}" />
+<p>Likes: {{likes}} Dislikes: {{dislikes}}</p>
+{{/each}}
