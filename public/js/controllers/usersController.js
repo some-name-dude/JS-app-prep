@@ -1,5 +1,3 @@
-/* globals $, CryptoJS */
-
 var usersController = (function() {
 
     function login(context) {
@@ -11,7 +9,7 @@ var usersController = (function() {
                     var $userName = $("#tb-username").val();
                     var $passWord = $("#tb-password").val();
                     var passHash = CryptoJS.SHA1($passWord).toString();
-                    console.log(passHash);
+                    // console.log(passHash);
 
                     var user = {
                         username: $userName,
@@ -19,9 +17,25 @@ var usersController = (function() {
                     };
 
                     data.users.login(user)
-                        .then(function() {
+                        .then(function(resUser) {
+
+                            // console.log(resUser);
+
+                            localStorage.setItem("username", resUser.result.username);
+                            localStorage.setItem("authKey", resUser.result.authKey);
+
+                            // console.log(localStorage.getItem("authKey"));
+                            // console.log(localStorage.getItem("username"));
+
                             console.log("user logged in");
                             toastr.success(`User "${user.username}" logged in!`);
+
+                            $("#username-value").parent("li").removeClass("hidden");
+                            $("#username-value").html("Hello, " + user.username);
+                            $("#btn-nav-login").addClass("hidden");
+                            $("#btn-nav-register").addClass("hidden");
+                            $("#user-logout").parent('li').removeClass("hidden");
+
                             context.redirect("#/");
                         });
                 });
@@ -54,7 +68,7 @@ var usersController = (function() {
                     var $passWord = $("#tb-password").val();
 
                     var passHash = CryptoJS.SHA1($passWord).toString();
-                    console.log(passHash);
+                    // console.log(passHash);
 
                     var user = {
                         username: $userName,
@@ -62,12 +76,31 @@ var usersController = (function() {
                     };
 
                     data.users.register(user)
-                        .then(function() {
-                            console.log("user registered");
-                            toastr.success(`User "${user.username}" successfully registered!`);
-                            context.redirect("#/");
-                        })
-                        .then(data.users.login(user));
+                        .then(function(respUser) {
+
+                            data.users.login(user)
+                                .then(function(logedUser) {
+
+                                    console.log(logedUser);
+
+                                    localStorage.setItem("username", logedUser.result.username);
+                                    localStorage.setItem("authKey", logedUser.result.authKey);
+
+                                    // console.log(localStorage.getItem("authKey"));
+                                    // console.log(localStorage.getItem("username"));
+
+                                    console.log("user registered");
+                                    toastr.success(`User "${respUser.result.username}" successfully registered!`);
+
+                                    $("#username-value").parent("li").removeClass("hidden");
+                                    $("#username-value").html("Hello, " + username);
+                                    $("#btn-nav-login").addClass("hidden");
+                                    $("#btn-nav-register").addClass("hidden");
+                                    $("#user-logout").parent('li').removeClass("hidden");
+
+                                    context.redirect("#/");
+                                });
+                        });
                 });
 
                 // If you need both butttons register and login

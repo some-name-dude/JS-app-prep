@@ -20,16 +20,20 @@
 
 
     let isUserLogged = data.users.isLoggedIn();
-    console.log(isUserLogged);
+    // console.log(isUserLogged);
     if (isUserLogged) {
         let username = data.users.getCurrentUser();
-        console.log(username);
+        // console.log(username);
 
-        $('#username-value').parent('li').removeClass('hidden');
-        $('#username-value').html('Hello, ' + username);
-        $('#btn-nav-login').addClass('hidden');
-        $('#btn-nav-register').addClass('hidden');
-        $('#user-logout').parent('li').removeClass('hidden');
+        $("#username-value").parent("li").removeClass("hidden");
+        $("#username-value").html("Hello, " + username);
+        $("#btn-nav-login").addClass("hidden");
+        $("#btn-nav-register").addClass("hidden");
+        $("#user-logout").parent('li').removeClass("hidden");
     }
+
+    $("#user-logout").on("click", function() {
+        data.users.logout();
+    });
 
 }());

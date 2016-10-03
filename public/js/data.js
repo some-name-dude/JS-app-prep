@@ -48,6 +48,11 @@ var data = function() {
             .then(() => {
                 localStorage.removeItem("username");
                 localStorage.removeItem("authKey");
+
+                $("#btn-nav-login").removeClass("hidden");
+                $("#btn-nav-register").removeClass("hidden");
+                $("#user-logout").parent("li").addClass("hidden");
+                $("#username-value").parent("li").addClass("hidden");
             });
     }
 
