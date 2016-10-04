@@ -3,36 +3,44 @@ var data = function() {
 
     /* Users */
     function login(user) {
-        var promise = new Promise(function(resolve, reject) {
-            var url = "api/auth";
+        // var promise = new Promise(function(resolve, reject) {
+        //     var url = "api/auth";
 
-            $.ajax(url, {
-                type: "PUT",
-                contentType: "application/json",
-                data: JSON.stringify(user),
-                success: function(res) {
-                    localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, res.result.authKey);
-                    resolve(res);
-                }
+        //     $.ajax(url, {
+        //         type: "PUT",
+        //         contentType: "application/json",
+        //         data: JSON.stringify(user),
+        //         success: function(res) {
+        //             localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, res.result.authKey);
+        //             resolve(res);
+        //         }
+        //     });
+        // });
+        // return promise;
+
+        return requester.putJSON("/api/auth", user)
+            .then(respUser => {
+                localStorage.setItem("username", respUser.result.username);
+                localStorage.setItem("authKey", respUser.result.authKey);
             });
-        });
-        return promise;
     }
 
     function register(user) {
-        var promise = new Promise(function(resolve, reject) {
-            var url = "api/users";
+        // var promise = new Promise(function(resolve, reject) {
+        //     var url = "api/users";
 
-            $.ajax(url, {
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(user),
-                success: function(res) {
-                    resolve(res);
-                }
-            });
-        });
-        return promise;
+        //     $.ajax(url, {
+        //         type: "POST",
+        //         contentType: "application/json",
+        //         data: JSON.stringify(user),
+        //         success: function(res) {
+        //             resolve(res);
+        //         }
+        //     });
+        // });
+        // return promise;
+
+        return requester.postJSON("/api/users", user);
     }
 
     function isLoggedIn() {
@@ -59,14 +67,18 @@ var data = function() {
     /* Cookies */
 
     function getCookies() {
-        var promise = new Promise(function(resolve, reject) {
-            var url = "api/cookies";
-            $.getJSON(url)
-                .done(resolve)
-                .fail(reject);
-        });
-        return promise;
+        return requester.getJSON("/api/cookies");
     }
+
+    // function getCookies() {
+    //     var promise = new Promise(function(resolve, reject) {
+    //         var url = "api/cookies";
+    //         $.getJSON(url)
+    //             .done(resolve)
+    //             .fail(reject);
+    //     });
+    //     return promise;
+    // }
 
     return {
         users: {

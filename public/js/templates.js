@@ -1,5 +1,12 @@
-var handlebars = window.handlebars || window.Handlebars;
+// let templates = {
+//     get: function(name) {
+//         let url = `/templates/${name}.handlebars`;
+//         console.log(url);
+//         return requester.get(url);
+//     }
+// };
 
+var handlebars = window.handlebars || window.Handlebars;
 let templates = {
     get: function(name) {
         let promise = new Promise(function(resolve, reject) {

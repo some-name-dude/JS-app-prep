@@ -17,13 +17,12 @@ var usersController = (function() {
                     };
 
                     data.users.login(user)
-                        .then(function(resUser) {
+                        .then(function(respUser) {
 
-                            // console.log(resUser);
-
-                            localStorage.setItem("username", resUser.result.username);
-                            localStorage.setItem("authKey", resUser.result.authKey);
-
+                            // it's not needed when using requester!
+                            // console.log(respUser);
+                            // localStorage.setItem("username", respUser.result.username);
+                            // localStorage.setItem("authKey", respUser.result.authKey);
                             // console.log(localStorage.getItem("authKey"));
                             // console.log(localStorage.getItem("username"));
 
@@ -80,12 +79,11 @@ var usersController = (function() {
 
                             data.users.login(user)
                                 .then(function(logedUser) {
-
-                                    console.log(logedUser);
-
-                                    localStorage.setItem("username", logedUser.result.username);
-                                    localStorage.setItem("authKey", logedUser.result.authKey);
-
+                                    
+                                    // it's not needed when using requester!
+                                    // console.log(logedUser);
+                                    // localStorage.setItem("username", logedUser.result.username);
+                                    // localStorage.setItem("authKey", logedUser.result.authKey);
                                     // console.log(localStorage.getItem("authKey"));
                                     // console.log(localStorage.getItem("username"));
 
@@ -93,7 +91,7 @@ var usersController = (function() {
                                     toastr.success(`User "${respUser.result.username}" successfully registered!`);
 
                                     $("#username-value").parent("li").removeClass("hidden");
-                                    $("#username-value").html("Hello, " + username);
+                                    $("#username-value").html(`Hello, ${respUser.result.username}`);
                                     $("#btn-nav-login").addClass("hidden");
                                     $("#btn-nav-register").addClass("hidden");
                                     $("#user-logout").parent('li').removeClass("hidden");
